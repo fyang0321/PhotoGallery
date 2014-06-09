@@ -1,0 +1,63 @@
+package solution;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Solution {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String[] test = new String[] {"fooo","barr","wing","ding","wing"};
+		System.out.println(
+				findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", test));
+	}
+	
+	    public static List<Integer> findSubstring(String S, String[] L) {
+	        return find(S, L);
+	    }
+	    
+	    private static List<Integer> find(String S, String[] L) {
+	        List<Integer> result = new ArrayList<Integer>();
+	        if (S == null)
+	            return result;
+	            
+	        int lenS = S.length();
+	        if (lenS == 0 || L.length == 0)
+	            return result;
+	            
+	        int wordLen = L[0].length();
+	        if (wordLen > lenS)
+	            return result;
+	            
+	        Set<String> words = new HashSet<String>();
+	        for(String s : L)
+	            words.add(s);
+	        Set<String> curWords = new HashSet<String>();
+	            
+	        for (int i = 0; i <= lenS - wordLen * L.length; i++) {
+	            curWords.clear();
+	            String word = S.substring(i, i + wordLen);
+	            int j = i;
+	            while (words.contains(word) && !curWords.contains(word)) {
+	                curWords.add(word);
+	                if (curWords.size() == L.length)
+	                    break;
+	                j = j + wordLen;
+	                if (j + wordLen > lenS)
+	                    break;
+	                word = S.substring(j, j + wordLen);
+	            }
+	            
+	            if (curWords.size() == L.length)
+	                result.add(i);
+	        }
+	        
+	        return result;
+	    }
+
+}
