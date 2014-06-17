@@ -1,9 +1,7 @@
 package solution;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Solution {
 
@@ -11,62 +9,35 @@ public class Solution {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String[] test = new String[] {"fooo","barr","wing","ding","wing"};
-		System.out.println(
-				findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake", test));
+	    // TODO Auto-generated method stub
+	    List<List<Character>> lists = new ArrayList<List<Character>>();
+	    List<Character> l1 = new ArrayList<Character>();
+	    l1.add('a'); l1.add('b');; l1.add('c');
+	    List<Character> l2 = new ArrayList<Character>();
+	    l2.add('#');
+	    List<Character> l3 = new ArrayList<Character>();
+	    l3.add('1'); l3.add('2');
+	    lists.add(l1); lists.add(l2); lists.add(l3);
+
+	    List<String> result = new ArrayList<String>();
+	    GenerateCombinations(lists, result, 0, new StringBuilder());
+
+	    System.out.println(result);
 	}
-	
-	public static List<Integer> findSubstring(String S, String[] L) {
-        return find(S, L);
-    }
-    
-    private static List<Integer> find(String S, String[] L) {
-        List<Integer> result = new ArrayList<Integer>();
-        if (S == null)
-            return result;
-            
-        int lenS = S.length();
-        if (lenS == 0 || L.length == 0)
-            return result;
-            
-        int wordLen = L[0].length();
-        if (wordLen > lenS)
-            return result;
-        //There is duplicates in dic, so set does not work.    
-        Map<String, Integer> words = new HashMap<String, Integer>();
-        for(String s : L) {
-            if (words.containsKey(s))
-                words.put(s, words.get(s) + 1);
-            else
-                words.put(s, 1);
-        }
-        Map<String, Integer> curWords = new HashMap<String, Integer>();
-            
-        for (int i = 0; i <= lenS - wordLen * L.length; i++) {
-            curWords.clear();
-            String word = S.substring(i, i + wordLen);
-            int j = i;
-            while (words.containsKey(word) && 
-                    (!curWords.containsKey(word) || curWords.get(word) < words.get(word))) {
-                if (curWords.containsKey(word))
-                    curWords.put(word, curWords.get(word) + 1);
-                else
-                    curWords.put(word, 1);
-                    
-                if (curWords.size() == L.length)
-                    break;
-                j = j + wordLen;
-                if (j + wordLen > lenS)
-                    break;
-                word = S.substring(j, j + wordLen);
-            }
-            
-            if (curWords.size() == L.length)
-                result.add(i);
-        }
-        
-        return result;
-    }
+
+
+	public static void GenerateCombinations(List<List<Character>> Lists, List<String> result, int listIndex, StringBuilder combo)
+	{
+	    if(listIndex == Lists.size()) {
+	       result.add(combo.toString());       
+	    } else {
+	        for(int i = 0; i < Lists.get(listIndex).size(); ++i)
+	        {
+	            combo.append(Lists.get(listIndex).get(i));
+	            GenerateCombinations(Lists, result, listIndex + 1, combo);
+	            combo.deleteCharAt((combo.length() - 1));
+	        }
+	    }
+	}
 
 }
