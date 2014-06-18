@@ -7,6 +7,9 @@
 		<item value="600" key="WIDTH"/>
 	</section>
 	<section name="conditionHistory">
+		<item value="2" key="conditionHistoryEntryCount"/>
+		<item value="str.equals(&quot;g&quot;);" key="conditionHistoryEntry_0"/>
+		<item value="str.equals(&quot;c&quot;)" key="conditionHistoryEntry_1"/>
 	</section>
 	<section name="AddExceptionDialog">
 		<item value="true" key="uncaughtChecked"/>
