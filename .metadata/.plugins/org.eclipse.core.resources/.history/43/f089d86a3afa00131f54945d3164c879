@@ -1,0 +1,5 @@
+package com.fyang0321.photogallery;
+
+public class PhotoPageFragment extends VisibleFragment {
+
+}
