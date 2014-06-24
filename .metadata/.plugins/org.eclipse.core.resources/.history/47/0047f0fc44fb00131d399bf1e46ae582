@@ -1,0 +1,17 @@
+package com.fyang880321.dragadndraw;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.View;
+
+public class BoxDrawingView extends View {
+	public static final String TAG = "BoxDrawingView";
+	
+	public BoxDrawingView(Context context) {
+		this(context, null);
+	}
+	
+	public BoxDrawingView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+}
