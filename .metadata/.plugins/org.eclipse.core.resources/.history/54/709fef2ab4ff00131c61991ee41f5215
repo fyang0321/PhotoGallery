@@ -1,0 +1,28 @@
+package com.fyang0321.runtracker;
+
+import android.content.Context;
+import android.location.LocationManager;
+
+public class RunManager {
+	private static final String TAG = "RunManager";
+	
+	public static final String ACTION_LOCATION = 
+			"com.fyang0321.android.runtracker.ACTION_LOCATION";
+	
+	private static RunManager sRunManager;
+	private Context mAppContext;
+	private LocationManager mLocationManager;
+	
+	private RunManager(Context appContext) {
+		mAppContext = appContext;
+		mLocationManager = (LocationManager)mAppContext
+				.getSystemService(Context.LOCATION_SERVICE);
+	}
+	
+	public static RunManager get(Context c) {
+		if (sRunManager == null) {
+			sRunManager = new RunManager(c.getApplicationContext());
+		}
+		return sRunManager;
+	}
+}
